@@ -26,7 +26,7 @@ function connect(event) {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
+        stompClient.connect({username: username}, onConnected, onError);
     }
     event.preventDefault();
 }
@@ -34,7 +34,7 @@ function connect(event) {
 
 function onConnected() {
     // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/abc/user/agent', onMessageReceived);
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
